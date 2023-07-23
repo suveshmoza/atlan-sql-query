@@ -24,3 +24,7 @@
 *::-webkit-scrollbar-thumb:active {
 	background-color: #2d3748;
 }
+
+.tab-content-transition {
+	transition: opacity 0.3s ease-in-out; /* Add more properties for a smoother transition if needed */
+}

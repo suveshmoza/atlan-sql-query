@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { Tab } from '../components';
-import Playground from './Playground';
+import React, { useState, useEffect } from 'react';
+import Tab from './Tab';
 
-const TabbedLayout = () => {
+const Layout = ({ children }) => {
 	const [tabs, setTabs] = useState([{ id: 1 }]);
 	const [activeTab, setActiveTab] = useState(1);
 
@@ -14,26 +13,20 @@ const TabbedLayout = () => {
 
 	const handleRemoveTab = (id) => {
 		const updatedTabs = tabs.filter((tab) => tab.id !== id);
-		updatedTabs.forEach((tab, index) => {
-			tab.id = index + 1;
-		});
-
 		setTabs(updatedTabs);
-
-		if (activeTab === id) {
-			const newActiveTab =
-				updatedTabs[activeTab - 1]?.id ||
-				updatedTabs[activeTab - 2]?.id ||
-				null;
-			setActiveTab(newActiveTab - 1);
-		}
 	};
 
-	if (tabs.length === 0) {
-		setTimeout(() => {
+	useEffect(() => {
+		if (tabs.length === 0) {
 			handleAddTab();
-		}, 100);
-	}
+		}
+	}, [tabs]);
+
+	useEffect(() => {
+		if (activeTab === null && tabs.length > 0) {
+			setActiveTab(tabs[0].id);
+		}
+	}, [activeTab, tabs]);
 
 	return (
 		<div className="bg-gray-100 pt-[1px] px-1">
@@ -60,7 +53,7 @@ const TabbedLayout = () => {
 						key={tab.id}
 						className={tab.id === activeTab ? 'block' : 'hidden'}
 					>
-						<Playground />
+						{children}
 					</div>
 				))}
 			</div>
@@ -68,4 +61,4 @@ const TabbedLayout = () => {
 	);
 };
 
-export default TabbedLayout;
+export default Layout;

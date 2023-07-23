@@ -1,4 +1,4 @@
-import React, { useCallback, memo } from 'react';
+import React, { useCallback } from 'react';
 
 const listData = [
 	'SELECT * FROM PRODUCTS;',
@@ -19,10 +19,10 @@ const AvailableQuries = ({ setQuery }) => {
 	return (
 		<div className="h-[250px] overflow-scroll p-1">
 			<ul className="list-none text-sm">
-				{listData.map((query) => (
+				{listData.map((query, index) => (
 					<li
-						key={query}
-						className="p-2 mb-2 border rounded-md shadow-md bg-blue-100 text-blue-800"
+						key={index}
+						className="p-2 mb-2 border rounded-md shadow-md bg-blue-100 text-blue-800 cursor-pointer"
 						onClick={() => handleClick(query)}
 					>
 						{query}
@@ -33,4 +33,4 @@ const AvailableQuries = ({ setQuery }) => {
 	);
 };
 
-export default memo(AvailableQuries);
+export default AvailableQuries;

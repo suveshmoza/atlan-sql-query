@@ -1,11 +1,16 @@
-// import { Playground } from './pages';
-import TabbedLayout from './pages/TabbedLayout';
+import React, { lazy, Suspense } from 'react';
+import { Layout, Loading } from './components';
+
+const Playground = lazy(() => import('./pages/Playground'));
 
 function App() {
 	return (
 		<div className="h-[100vh]">
-			{/* <Playground /> */}
-			<TabbedLayout />
+			<Layout>
+				<Suspense fallback={<Loading />}>
+					<Playground />
+				</Suspense>
+			</Layout>
 		</div>
 	);
 }

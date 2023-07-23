@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import React, { memo, useState } from 'react';
 
 const AccordionItem = ({ name, data, setQuery }) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -33,11 +33,11 @@ const AccordionItem = ({ name, data, setQuery }) => {
 			</button>
 			{isOpen && (
 				<ul className="bg-gray-100 p-2 rounded-lg">
-					{data.map((item, index) => (
+					{data.map((item) => (
 						<li
-							key={index}
-							className="py-2 px-3 mb-1 bg-white rounded-lg shadow-md"
-							onClickCapture={() => setQuery(`Select ${item} from ${name};`)}
+							key={item}
+							className="py-2 px-3 mb-1 bg-white rounded-lg shadow-md cursor-pointer"
+							onClick={() => setQuery(`Select ${item} from ${name};`)}
 						>
 							{item} (<span className="capitalize">{typeof item}</span>)
 						</li>

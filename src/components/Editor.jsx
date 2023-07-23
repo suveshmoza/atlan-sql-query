@@ -1,14 +1,11 @@
 import ReactCodeMirror from '@uiw/react-codemirror';
-import { sql } from '@codemirror/lang-sql';
 import { useCallback, memo } from 'react';
+import { sql } from '@codemirror/lang-sql';
 
 const Editor = ({ query, setQuery, handleSubmit }) => {
-	const handleChange = useCallback(
-		(value) => {
-			setQuery(value);
-		},
-		[setQuery]
-	);
+	const handleChange = useCallback((value) => {
+		setQuery(value);
+	}, []);
 
 	return (
 		<div>
@@ -17,7 +14,7 @@ const Editor = ({ query, setQuery, handleSubmit }) => {
 					htmlFor="file-input"
 					className="btn px-4 py-2 mr-1 rounded bg-green-600 text-white"
 				>
-					Import File
+					<i class="fa-solid fa-file-import"></i> Import File
 				</label>
 				<input
 					id="file-input"
@@ -29,13 +26,13 @@ const Editor = ({ query, setQuery, handleSubmit }) => {
 					className="btn px-4 py-2 mr-1 rounded bg-red-600 text-white"
 					onClick={() => setQuery('')}
 				>
-					Clear Query
+					<i className="fa-solid fa-eraser"></i> Clear Query
 				</button>
 				<button
 					className="btn px-4 py-2 rounded bg-blue-600 text-white"
 					onClick={handleSubmit}
 				>
-					Run Query
+					<i className="fa-solid fa-play"></i> Run Query
 				</button>
 			</div>
 			<ReactCodeMirror

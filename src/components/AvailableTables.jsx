@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import AccordionItem from './AccordionItem';
 import customerData from '../assets/data/customer.json';
 import productsData from '../assets/data/products.json';
@@ -13,9 +13,9 @@ const AvailableTables = ({ setQuery }) => {
 
 	return (
 		<div className="overflow-scroll h-[250px] p-4">
-			{tablesInfo.map((table, index) => (
+			{tablesInfo.map((table) => (
 				<AccordionItem
-					key={index}
+					key={table.name}
 					name={table.name}
 					data={table.data}
 					setQuery={setQuery}
@@ -25,4 +25,4 @@ const AvailableTables = ({ setQuery }) => {
 	);
 };
 
-export default memo(AvailableTables);
+export default AvailableTables;
