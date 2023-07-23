@@ -9,6 +9,10 @@ const Playground = () => {
 	const [showOutput, setShowOutput] = useState(false);
 
 	const handleSubmit = useCallback(async () => {
+		if (query.length === 0) {
+			alert("Query can't be empty!");
+			return;
+		}
 		setIsLoading(true);
 		let data;
 		if (query.toLowerCase() === 'select * from products;') {
@@ -42,17 +46,12 @@ const Playground = () => {
 						handleSubmit={handleSubmit}
 					/>
 				</div>
-				<div className="w-1/2 h-[300px] overflow-y-scroll">
+				<div className="w-1/2">
 					<Sidebar history={history} setQuery={setQuery} />
 				</div>
 			</div>
 			<div className="flex-1">
-				<div className="text-xl p-2 bg-slate-100">Output</div>
-				<div className="h-[290px] overflow-scroll">
-					{showOutput && (
-						<Output isLoading={isLoading} tableData={outputData} />
-					)}
-				</div>
+				{showOutput && <Output isLoading={isLoading} tableData={outputData} />}
 			</div>
 		</div>
 	);

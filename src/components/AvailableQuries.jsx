@@ -17,7 +17,7 @@ const AvailableQuries = ({ setQuery }) => {
 	);
 
 	return (
-		<div className="p-4">
+		<div className="h-[250px] overflow-scroll p-1">
 			<ul className="list-none text-sm">
 				{listData.map((query) => (
 					<li

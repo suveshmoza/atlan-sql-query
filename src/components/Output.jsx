@@ -1,42 +1,49 @@
 import Loading from './Loading';
 
-const Output = ({ tableData, isLoading, isOutputReady }) => {
+const Output = ({ tableData, isLoading }) => {
 	if (isLoading) {
 		return <Loading />;
 	}
 
 	return (
-		<div className="rounded-xl shadow-md overflow-hidden">
-			<div className="p-2">
-				<table className="table-fixed w-full">
-					<thead className="bg-blue-500 text-white">
-						<tr>
-							{Object.keys(tableData[0]).map((key) => (
-								<th key={key} className="px-6 py-4 font-semibold">
-									{key}
-								</th>
-							))}
-						</tr>
-					</thead>
-					<tbody>
-						{tableData.map((item, index) => (
-							<tr
-								key={index}
-								className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}
-							>
-								{Object.values(item).map((value, index) => (
-									<td
-										key={index}
-										className="px-6 py-4 border-b border-gray-300"
-									>
-										{value}
-									</td>
-								))}
-							</tr>
-						))}
-					</tbody>
-				</table>
-			</div>
+		<div>
+			{tableData && (
+				<div className="">
+					<h1 className="text-xl p-2 bg-slate-100">Output</h1>
+					<div className="h-[278px] overflow-scroll">
+						<div className="px-1">
+							<table className="table-auto w-full">
+								<thead className="bg-blue-600 text-white">
+									<tr>
+										{Object.keys(tableData[0]).map((key) => (
+											<th key={key} className="p-2 font-semibold">
+												{key}
+											</th>
+										))}
+									</tr>
+								</thead>
+								<tbody>
+									{tableData.map((item, index) => (
+										<tr
+											key={index}
+											className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}
+										>
+											{Object.values(item).map((value, index) => (
+												<td
+													key={index}
+													className="p-2 border-b border-gray-300"
+												>
+													{value}
+												</td>
+											))}
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };

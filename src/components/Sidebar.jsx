@@ -1,9 +1,10 @@
 import { useState, memo } from 'react';
 import History from './History';
 import AvailableQuries from './AvailableQuries';
+import AvailableTables from './AvailableTables';
 
 const Sidebar = ({ history, setQuery }) => {
-	const [activeTab, setActiveTab] = useState('Queries Available');
+	const [activeTab, setActiveTab] = useState('Suggestions');
 
 	const handleTabClick = (tab) => {
 		setActiveTab(tab);
@@ -11,8 +12,12 @@ const Sidebar = ({ history, setQuery }) => {
 
 	const tabs = [
 		{
-			label: 'Queries Available',
+			label: 'Suggestions',
 			content: <AvailableQuries setQuery={setQuery} />,
+		},
+		{
+			label: 'Tables Available',
+			content: <AvailableTables setQuery={setQuery} />,
 		},
 		{
 			label: 'History',
@@ -21,7 +26,7 @@ const Sidebar = ({ history, setQuery }) => {
 	];
 
 	return (
-		<div className="border p-2 h-screen">
+		<div className="h-[300px] border rounded-lg p-2">
 			<ul className="flex justify-evenly">
 				{tabs.map((tab) => (
 					<li
@@ -37,7 +42,7 @@ const Sidebar = ({ history, setQuery }) => {
 					</li>
 				))}
 			</ul>
-			<div className={activeTab}>
+			<div className={`${activeTab}`}>
 				{tabs.find((tab) => tab.label === activeTab).content}
 			</div>
 		</div>

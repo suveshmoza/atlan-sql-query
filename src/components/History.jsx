@@ -17,7 +17,7 @@ const History = ({ data, setQuery }) => {
 	}
 
 	return (
-		<div className="p-4">
+		<div className="overflow-scroll h-[250px] p-4">
 			<ul className="list-none text-sm">
 				{data.map((query) => (
 					<li
