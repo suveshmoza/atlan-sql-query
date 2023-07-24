@@ -29,3 +29,22 @@ Atlan SQL Editor is a web based application to run SQL Queries and display resul
 | Homepage                                                                      | With Results                                                                      |
 | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | ![Homepage](https://i.ibb.co/kMBdkR4/Screenshot-from-2023-07-24-17-26-49.png) | ![With Results](https://i.ibb.co/6n4YvV4/Screenshot-from-2023-07-24-17-26-59.png) |
+
+# Getting Started
+
+To get started and run the project locally, follow these steps:
+
+1. Clone the repository:
+```
+git clone git@github.com:suveshmoza/atlan-sql-query.git
+cd atlan-sql-query
+```
+2. Install the dependencies:
+```
+npm install
+```
+3. Start the development server:
+```
+npm run start
+```
+4. Open your browser and go to `http://localhost:3000` to see the app in action!
