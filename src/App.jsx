@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
-import { Layout, Loading } from './components';
+import Loading from './components/Loading';
+import Layout from './components/Layout';
 
 const Playground = lazy(() => import('./pages/Playground'));
 

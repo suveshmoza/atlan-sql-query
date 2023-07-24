@@ -5,23 +5,27 @@ const Layout = ({ children }) => {
 	const [tabs, setTabs] = useState([{ id: 1 }]);
 	const [activeTab, setActiveTab] = useState(1);
 
+	// Add a new tab with a unique ID
 	const handleAddTab = () => {
 		const newTabId = tabs.length + 1;
 		setTabs([...tabs, { id: newTabId }]);
 		setActiveTab(newTabId);
 	};
 
+	// Remove a tab based on its ID
 	const handleRemoveTab = (id) => {
 		const updatedTabs = tabs.filter((tab) => tab.id !== id);
 		setTabs(updatedTabs);
 	};
 
+	// Add a new tab when there are no tabs present
 	useEffect(() => {
 		if (tabs.length === 0) {
 			handleAddTab();
 		}
 	}, [tabs]);
 
+	// Set the first tab as active if no tab is currently active
 	useEffect(() => {
 		if (activeTab === null && tabs.length > 0) {
 			setActiveTab(tabs[0].id);

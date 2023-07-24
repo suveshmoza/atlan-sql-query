@@ -1,9 +1,9 @@
-import React, { useState, useCallback, useEffect, Suspense } from 'react';
-import { Loading } from '../components';
+import { useState, useCallback, useEffect, Suspense, lazy } from 'react';
+import Loading from '../components/Loading';
 
-const LazyEditor = React.lazy(() => import('../components/Editor'));
-const LazyOutput = React.lazy(() => import('../components/Output'));
-const LazySidebar = React.lazy(() => import('../components/Sidebar'));
+const LazyEditor = lazy(() => import('../components/Editor'));
+const LazyOutput = lazy(() => import('../components/Output'));
+const LazySidebar = lazy(() => import('../components/Sidebar'));
 
 const Playground = () => {
 	const [query, setQuery] = useState('Select * from Products;');
@@ -13,12 +13,9 @@ const Playground = () => {
 	const [showOutput, setShowOutput] = useState(false);
 
 	const handleSubmit = useCallback(async () => {
-		if (query.length === 0) {
-			alert("Query can't be empty!");
-			return;
-		}
 		setIsLoading(true);
 		let data;
+
 		if (query.toLowerCase() === 'select * from products;') {
 			data = await import('../assets/data/products.json');
 		} else if (query.toLowerCase() === 'select * from customers;') {
@@ -26,6 +23,7 @@ const Playground = () => {
 		} else {
 			data = await import('../assets/data/products.json');
 		}
+
 		setOutputData(data.default);
 		setIsLoading(false);
 		setShowOutput(true);
@@ -49,6 +47,8 @@ const Playground = () => {
 							query={query}
 							setQuery={setQuery}
 							handleSubmit={handleSubmit}
+							setOutputData={setOutputData}
+							setShowOutput={setShowOutput}
 						/>
 					</Suspense>
 				</div>

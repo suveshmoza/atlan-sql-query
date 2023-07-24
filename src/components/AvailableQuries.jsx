@@ -8,7 +8,7 @@ const listData = [
 	'SELECT customerID, unitPrice FROM CUSTOMERS;',
 ];
 
-const AvailableQuries = ({ setQuery }) => {
+const AvailableQueries = ({ setQuery }) => {
 	const handleClick = useCallback(
 		(query) => {
 			setQuery(query);
@@ -16,13 +16,16 @@ const AvailableQuries = ({ setQuery }) => {
 		[setQuery]
 	);
 
+	const listItemClass =
+		'p-2 mb-2 border rounded-md shadow-md bg-blue-100 text-blue-800 cursor-pointer hover:bg-blue-200';
+
 	return (
 		<div className="h-[250px] overflow-scroll p-1">
 			<ul className="list-none text-sm">
 				{listData.map((query, index) => (
 					<li
 						key={index}
-						className="p-2 mb-2 border rounded-md shadow-md bg-blue-100 text-blue-800 cursor-pointer"
+						className={listItemClass}
 						onClick={() => handleClick(query)}
 					>
 						{query}
@@ -33,4 +36,4 @@ const AvailableQuries = ({ setQuery }) => {
 	);
 };
 
-export default AvailableQuries;
+export default AvailableQueries;

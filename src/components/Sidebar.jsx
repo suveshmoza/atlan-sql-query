@@ -19,7 +19,7 @@ const Sidebar = ({ history, setQuery, setHistory }) => {
 					<li
 						key={label}
 						onClick={() => handleTabClick(label)}
-						className={`text-base font-medium px-4 py-2 ${
+						className={`text-base font-medium px-4 py-2 cursor-pointer ${
 							activeTab === label
 								? 'text-gray-900 border-b-2 border-blue-500'
 								: 'text-gray-500'

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import AccordionItem from './AccordionItem';
 import customerData from '../assets/data/customer.json';
 import productsData from '../assets/data/products.json';
