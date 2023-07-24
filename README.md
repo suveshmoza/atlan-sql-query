@@ -12,10 +12,10 @@ Atlan SQL Editor is a web based application to run SQL Queries and display resul
 # Performance
 
 1. First tool that I used for testing the performance was Lighthouse which is included in the Developer Tools.
-   ![Lighthouse-1](https://i.ibb.co/CVDN8Nb/Screenshot-from-2023-07-24-18-00-13.png)
+   <img src="https://i.ibb.co/3rCkcw4/Screenshot-from-2023-07-24-18-00-13.png">
    ![Lighthouse-2](https://i.ibb.co/nnNHwn7/Screenshot-from-2023-07-24-18-00-48.png)
 
-2. Second tool which I used is a website called [GTmetrix](https://gtmetrix.com/)
+3. Second tool which I used is a website called [GTmetrix](https://gtmetrix.com/)
    ![GTmetrix-1](https://i.ibb.co/qmd7nWM/Screenshot-from-2023-07-24-18-12-41.png)
    ![GTmetrix-2](https://i.ibb.co/ckzWDF2/Screenshot-from-2023-07-24-18-13-02.png)
 
