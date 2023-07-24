@@ -1,6 +1,6 @@
+import { memo } from 'react';
 import TableRow from './TableRow';
 import Loading from './Loading';
-import { memo } from 'react';
 
 const Output = memo(({ tableData, isLoading }) => {
 	if (isLoading) {

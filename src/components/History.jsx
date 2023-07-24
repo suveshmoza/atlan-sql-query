@@ -2,7 +2,6 @@ import { memo, useEffect } from 'react';
 
 const History = ({ history, setQuery, setHistory }) => {
 	useEffect(() => {
-		// Load history from localStorage on component mount
 		const storedHistory = localStorage.getItem('history');
 		if (storedHistory) {
 			setHistory(JSON.parse(storedHistory).items);
@@ -10,14 +9,12 @@ const History = ({ history, setQuery, setHistory }) => {
 	}, []);
 
 	const handleDeleteHistory = () => {
-		// Prompt user before deleting history
 		if (window.confirm('Do you want to delete history permanently?')) {
 			setHistory('');
 			localStorage.removeItem('history');
 		}
 	};
 
-	// Render empty state if history is empty
 	if (history.length === 0) {
 		return (
 			<div className="flex justify-center mt-20 text-gray-400">

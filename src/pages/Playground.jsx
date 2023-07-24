@@ -34,10 +34,6 @@ const Playground = () => {
 		);
 	}, [query]);
 
-	useEffect(() => {
-		setShowOutput(false);
-	}, []);
-
 	return (
 		<div className="flex flex-col max-h-full p-1 h-full">
 			<div className="flex h-1/2">
