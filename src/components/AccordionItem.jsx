@@ -24,7 +24,7 @@ const AccordionItem = ({ name, data, setQuery }) => {
 				{isOpen ? (
 					<i className="fa-solid fa-angle-up"></i>
 				) : (
-					<i class="fa-solid fa-angle-down"></i>
+					<i className="fa-solid fa-angle-down"></i>
 				)}
 			</button>
 			{isOpen && (

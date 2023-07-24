@@ -1,9 +1,9 @@
 import { useState, useCallback, useEffect, Suspense, lazy } from 'react';
+import Sidebar from '../components/Sidebar';
 import Loading from '../components/Loading';
 
 const LazyEditor = lazy(() => import('../components/Editor'));
 const LazyOutput = lazy(() => import('../components/Output'));
-const LazySidebar = lazy(() => import('../components/Sidebar'));
 
 const Playground = () => {
 	const [query, setQuery] = useState('Select * from Products;');
@@ -53,13 +53,11 @@ const Playground = () => {
 					</Suspense>
 				</div>
 				<div className="w-1/2">
-					<Suspense fallback={<Loading />}>
-						<LazySidebar
-							history={history}
-							setHistory={setHistory}
-							setQuery={setQuery}
-						/>
-					</Suspense>
+					<Sidebar
+						history={history}
+						setHistory={setHistory}
+						setQuery={setQuery}
+					/>
 				</div>
 			</div>
 			<div className="flex-1">

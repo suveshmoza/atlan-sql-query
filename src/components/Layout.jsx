@@ -1,34 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Tab from './Tab';
 
 const Layout = ({ children }) => {
 	const [tabs, setTabs] = useState([{ id: 1 }]);
 	const [activeTab, setActiveTab] = useState(1);
+	const [latestTabId, setLatestTabId] = useState(1); // Track the latest used tab ID
 
-	// Add a new tab with a unique ID
 	const handleAddTab = () => {
-		const newTabId = tabs.length + 1;
+		const newTabId = latestTabId + 1; // Get the next unique ID
 		setTabs([...tabs, { id: newTabId }]);
 		setActiveTab(newTabId);
+		setLatestTabId(newTabId); // Update the latestTabId
 	};
-
-	// Remove a tab based on its ID
 	const handleRemoveTab = (id) => {
-		const updatedTabs = tabs.filter((tab) => tab.id !== id);
-		setTabs(updatedTabs);
+		const tabIndexToRemove = tabs.findIndex((tab) => tab.id === id);
+		if (tabIndexToRemove === -1) {
+			// Tab with the given ID not found, return early to avoid any issues.
+			return;
+		}
+
+		const isCurrentTabActive = id === activeTab;
+
+		setTabs((prevTabs) => {
+			const updatedTabs = prevTabs.filter((tab) => tab.id !== id);
+
+			// Determine the new active tab index if the current tab is active and it's not the last tab
+			let newActiveTabIndex = isCurrentTabActive ? tabIndexToRemove - 1 : -1;
+			if (newActiveTabIndex < 0 && updatedTabs.length > 0) {
+				// Ensure the new active tab index is within bounds.
+				newActiveTabIndex = 0;
+			}
+
+			// Return the updated tabs
+			return updatedTabs;
+		});
 	};
 
-	// Add a new tab when there are no tabs present
-	useEffect(() => {
-		if (tabs.length === 0) {
-			handleAddTab();
-		}
-	}, [tabs]);
-
-	// Set the first tab as active if no tab is currently active
 	useEffect(() => {
 		if (activeTab === null && tabs.length > 0) {
+			// If no tab is currently active, set the first tab as active
 			setActiveTab(tabs[0].id);
+		} else if (
+			activeTab !== null &&
+			!tabs.some((tab) => tab.id === activeTab)
+		) {
+			// If the active tab is removed, set the new active tab
+			const newActiveTabId = tabs.length > 0 ? tabs[tabs.length - 1].id : null;
+			setActiveTab(newActiveTabId);
 		}
 	}, [activeTab, tabs]);
 
@@ -40,8 +58,8 @@ const Layout = ({ children }) => {
 						key={tab.id}
 						id={tab.id}
 						isActive={tab.id === activeTab}
-						onClick={setActiveTab}
-						onClose={handleRemoveTab}
+						onClick={() => setActiveTab(tab.id)}
+						onClose={() => handleRemoveTab(tab.id)}
 					/>
 				))}
 				<button
