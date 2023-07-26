@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, Suspense, lazy } from 'react';
+import { useState, useCallback, Suspense, lazy } from 'react';
 import Sidebar from '../components/Sidebar';
 import Loading from '../components/Loading';
 
@@ -36,8 +36,8 @@ const Playground = () => {
 
 	return (
 		<div className="flex flex-col max-h-full p-1 h-full">
-			<div className="flex h-1/2">
-				<div className="w-2/3 mr-2">
+			<div className="flex flex-col-reverse sm:flex-row h-1/2">
+				<div className="w-full sm:w-2/3 mr-2 mb-2 sm:mb-0">
 					<Suspense fallback={<Loading />}>
 						<LazyEditor
 							query={query}
@@ -48,7 +48,7 @@ const Playground = () => {
 						/>
 					</Suspense>
 				</div>
-				<div className="w-1/2">
+				<div className="w-full sm:w-1/2 mb-2 sm:mb-0">
 					<Sidebar
 						history={history}
 						setHistory={setHistory}

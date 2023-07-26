@@ -1,6 +1,6 @@
 import { memo, useState } from 'react';
 
-const AccordionItem = ({ name, data, setQuery }) => {
+const AvailableTableItem = ({ name, data, setQuery }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const toggleAccordion = () => {
@@ -44,4 +44,4 @@ const AccordionItem = ({ name, data, setQuery }) => {
 	);
 };
 
-export default memo(AccordionItem);
+export default memo(AvailableTableItem);
