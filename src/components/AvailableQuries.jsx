@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { ListGroup } from 'flowbite-react';
 
 const listData = [
 	'SELECT * FROM PRODUCTS;',
@@ -16,22 +17,15 @@ const AvailableQueries = ({ setQuery }) => {
 		[setQuery]
 	);
 
-	const listItemClass =
-		'p-2 mb-2 border rounded-md shadow-md bg-blue-100 text-blue-800 cursor-pointer hover:bg-blue-200';
-
 	return (
-		<div className="h-[250px] overflow-scroll p-1">
-			<ul className="list-none text-sm">
+		<div className="h-[250px] overflow-scroll p-2">
+			<ListGroup>
 				{listData.map((query, index) => (
-					<li
-						key={index}
-						className={listItemClass}
-						onClick={() => handleClick(query)}
-					>
+					<ListGroup.Item key={index} onClick={() => handleClick(query)}>
 						{query}
-					</li>
+					</ListGroup.Item>
 				))}
-			</ul>
+			</ListGroup>
 		</div>
 	);
 };

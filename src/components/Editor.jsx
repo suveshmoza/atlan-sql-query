@@ -1,6 +1,5 @@
 import { memo, useCallback } from 'react';
-import ReactCodeMirror from '@uiw/react-codemirror';
-import { sql } from '@codemirror/lang-sql';
+import { FaFileImport, FaEraser, FaPlay } from 'react-icons/fa';
 
 const handleFileImport = (e, setOutputData, setShowOutput) => {
 	const importedFile = e.target.files[0];
@@ -27,20 +26,20 @@ const Editor = ({
 	setShowOutput,
 }) => {
 	const handleChange = useCallback(
-		(value) => {
-			setQuery(value);
+		(e) => {
+			setQuery(e.target.value);
 		},
 		[setQuery]
 	);
 
 	return (
 		<div>
-			<div className="flex justify-end pb-1">
+			<div class="flex justify-end gap-1 rounded-md shadow-sm" role="group">
 				<label
 					htmlFor="file-input"
-					className="btn px-4 py-2 mr-1 rounded bg-green-600 text-white"
+					className="inline-flex items-center px-4 py-2 text-sm font-medium  bg-yellow-300/90 text-white border border-gray-200 rounded cursor-pointer"
 				>
-					<i className="fa-solid fa-file-import"></i> Import File
+					Import File <FaFileImport className="ml-2 h-4 w-4" />
 				</label>
 				<input
 					id="file-input"
@@ -48,27 +47,30 @@ const Editor = ({
 					type="file"
 					onChange={(e) => handleFileImport(e, setOutputData, setShowOutput)}
 				/>
+
 				<button
-					className="btn px-4 py-2 mr-1 rounded bg-red-600 text-white"
+					type="button"
 					onClick={() => setQuery('')}
+					class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-600 border-gray-200 rounded cursor-pointer"
 				>
-					<i className="fa-solid fa-eraser"></i> Clear Query
+					Clear Query <FaEraser className="ml-2 h-4 w-4" />
 				</button>
 				<button
-					className="btn px-4 py-2 rounded bg-blue-600 text-white disabled:opacity-75"
+					type="button"
+					class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-gray-200 rounded cursor-pointer"
 					disabled={query.length === 0}
 					onClick={handleSubmit}
 				>
-					<i className="fa-solid fa-play"></i> Run Query
+					Run Query <FaPlay className="ml-2 h-4 w-4" />
 				</button>
 			</div>
-			<ReactCodeMirror
-				className="border"
-				height="250px"
-				extensions={[sql()]}
+			<textarea
+				id="message"
+				class="block p-2.5 h-[259px] w-full text-sm bg-gray-50 rounded-lg border border-gray-200 resize-none"
+				placeholder="Enter or select an available query"
 				value={query}
 				onChange={handleChange}
-			/>
+			></textarea>
 		</div>
 	);
 };

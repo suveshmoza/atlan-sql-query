@@ -1,4 +1,6 @@
 import { memo, useEffect } from 'react';
+import { ListGroup, Button } from 'flowbite-react';
+import { FaTrash } from 'react-icons/fa';
 
 const History = ({ history, setQuery, setHistory }) => {
 	useEffect(() => {
@@ -24,29 +26,22 @@ const History = ({ history, setQuery, setHistory }) => {
 	}
 
 	return (
-		<div className="overflow-scroll h-[250px] p-4">
+		<>
 			{history && (
-				<div className="text-end mb-1">
-					<button
-						onClick={handleDeleteHistory}
-						className="px-4 py-2 bg-red-600 text-white rounded"
-					>
-						<i className="fa-solid fa-trash"></i>
-					</button>
+				<div className="flex justify-end mb-1">
+					<Button onClick={handleDeleteHistory} color="failure">
+						Delete History <FaTrash className="ml-2 h-4 w-4" />
+					</Button>
 				</div>
 			)}
-			<ul className="list-none text-sm">
+			<ListGroup className="overflow-y-scroll h-[175px]">
 				{history.map((query, index) => (
-					<li
-						key={index}
-						className="p-2 mb-2 border rounded-md shadow-md bg-blue-100 text-blue-800 cursor-pointer"
-						onClick={() => setQuery(query)}
-					>
+					<ListGroup.Item key={index} onClick={() => setQuery(query)}>
 						{query}
-					</li>
+					</ListGroup.Item>
 				))}
-			</ul>
-		</div>
+			</ListGroup>
+		</>
 	);
 };
 

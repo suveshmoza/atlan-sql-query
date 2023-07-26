@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+import { Accordion } from 'flowbite-react';
+
 import AvailableTableItem from './AvailableTableItem';
 import customerData from '../assets/data/customer.json';
 import productsData from '../assets/data/products.json';
@@ -12,16 +14,16 @@ const AvailableTables = ({ setQuery }) => {
 	}, []);
 
 	return (
-		<div className="overflow-scroll h-[250px] p-4">
+		<Accordion>
 			{tablesInfo.map((table) => (
-				<AvailableTableItem
-					key={table.name}
-					name={table.name}
-					data={table.data}
-					setQuery={setQuery}
-				/>
+				<Accordion.Panel key={table.name}>
+					<Accordion.Title>{table.name}</Accordion.Title>
+					<Accordion.Content className="p-2">
+						<AvailableTableItem data={table.data} setQuery={setQuery} />
+					</Accordion.Content>
+				</Accordion.Panel>
 			))}
-		</div>
+		</Accordion>
 	);
 };
 

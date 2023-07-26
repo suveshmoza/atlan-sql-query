@@ -1,47 +1,37 @@
-import { useState, memo } from 'react';
+import { useState, memo, useRef } from 'react';
 import History from './History';
 import AvailableQuries from './AvailableQuries';
 import AvailableTables from './AvailableTables';
+import { FaTable, FaHistory } from 'react-icons/fa';
+import { MdOutlineEditNote } from 'react-icons/md';
+import { Tabs } from 'flowbite-react';
 
 const Sidebar = ({ history, setQuery, setHistory }) => {
-	const [activeTab, setActiveTab] = useState('Suggestions');
-
-	const handleTabClick = (tab) => {
-		setActiveTab(tab);
-	};
-
-	const tabs = ['Suggestions', 'Tables Available', 'History'];
-
+	const [activeTab, setActiveTab] = useState(0);
+	const tabsRef = useRef(null);
+	const props = { setActiveTab, tabsRef };
 	return (
-		<div className="h-[300px] border rounded-lg p-2">
-			<ul className="flex justify-evenly">
-				{tabs.map((label) => (
-					<li
-						key={label}
-						onClick={() => handleTabClick(label)}
-						className={`text-base font-medium px-4 py-2 cursor-pointer ${
-							activeTab === label
-								? 'text-gray-900 border-b-2 border-blue-500'
-								: 'text-gray-500'
-						}`}
-					>
-						{label}
-					</li>
-				))}
-			</ul>
-			<div className="tab-content-transition">
-				{activeTab === 'Suggestions' && <AvailableQuries setQuery={setQuery} />}
-				{activeTab === 'Tables Available' && (
+		<div className="h-[300px] overflow-scroll">
+			<Tabs.Group
+				aria-label="Default tabs"
+				style={('underline', 'fullWidth')}
+				ref={props.tabsRef}
+				onActiveTabChange={(tab) => props.setActiveTab(tab)}
+			>
+				<Tabs.Item active title="Available Queries" icon={MdOutlineEditNote}>
+					<AvailableQuries setQuery={setQuery} />
+				</Tabs.Item>
+				<Tabs.Item title="Tables Available" icon={FaTable}>
 					<AvailableTables setQuery={setQuery} />
-				)}
-				{activeTab === 'History' && (
+				</Tabs.Item>
+				<Tabs.Item title="History" icon={FaHistory}>
 					<History
 						history={history}
 						setHistory={setHistory}
 						setQuery={setQuery}
 					/>
-				)}
-			</div>
+				</Tabs.Item>
+			</Tabs.Group>
 		</div>
 	);
 };
