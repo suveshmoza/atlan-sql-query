@@ -1,41 +1,24 @@
 import React from 'react';
-
+import { ImCross } from 'react-icons/im';
 const Tab = ({ id, isActive, onClick, onClose }) => {
 	const showDeleteButton = id !== 1;
 
-	const activeTabStyles = 'bg-white border-blue-500';
-	const inactiveTabStyles = 'bg-gray-100 border-gray-300 cursor-pointer';
-	const activeButtonStyles = 'bg-white text-blue-500';
-	const inactiveButtonStyles = 'text-gray-700';
-
 	return (
-		<div
-			className={`flex items-center space-x-2 rounded-t-lg border-t-2 border-l-2 border-r-2 ${
-				isActive ? activeTabStyles : inactiveTabStyles
-			} transition-colors duration-300 ease-in-out`}
+		<li
+			className={`border-x mr-[1px] border-t outline-none flex justify-center items-center px-4 py-2 rounded-t-md hover:text-gray-600 hover:border-gray-300  ${
+				isActive ? 'active  border-blue-500 text-blue-600' : 'bg-gray-200/80'
+			}`}
 			onClick={() => onClick(id)}
 		>
+			<p>Tab {id}</p>
 			<button
-				className={`px-2 py-1 rounded-tl-lg ${
-					isActive ? activeButtonStyles : inactiveButtonStyles
-				} transition-colors duration-300 ease-in-out`}
-			>
-				Tab {id}
-			</button>
-			<button
-				className={`p-2 rounded-tr-lg ${
-					showDeleteButton
-						? ''
-						: 'disabled:opacity-50 disabled:cursor-not-allowed'
-				} ${
-					isActive ? activeButtonStyles : inactiveButtonStyles
-				} transition-colors duration-300 ease-in-out`}
+				className="p-1 text-gray-700 hover:text-red-600 disabled:opacity-50 disabled:cursor-not-allowed"
 				onClick={() => onClose(id)}
 				disabled={!showDeleteButton}
 			>
-				X
+				<ImCross className="w-3 h-3" />
 			</button>
-		</div>
+		</li>
 	);
 };
 

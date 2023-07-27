@@ -18,7 +18,7 @@ const AvailableQueries = ({ setQuery }) => {
 	);
 
 	return (
-		<div className="h-[250px] overflow-scroll p-2">
+		<div className="h-[200px] overflow-scroll ">
 			<ListGroup>
 				{listData.map((query, index) => (
 					<ListGroup.Item key={index} onClick={() => handleClick(query)}>

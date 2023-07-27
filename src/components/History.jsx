@@ -28,19 +28,21 @@ const History = ({ history, setQuery, setHistory }) => {
 	return (
 		<>
 			{history && (
-				<div className="flex justify-end mb-1">
+				<div className="flex justify-end ">
 					<Button onClick={handleDeleteHistory} color="failure">
 						Delete History <FaTrash className="ml-2 h-4 w-4" />
 					</Button>
 				</div>
 			)}
-			<ListGroup className="overflow-y-scroll h-[175px]">
-				{history.map((query, index) => (
-					<ListGroup.Item key={index} onClick={() => setQuery(query)}>
-						{query}
-					</ListGroup.Item>
-				))}
-			</ListGroup>
+			<div className="h-[165px] overflow-scroll">
+				<ListGroup>
+					{history.map((query, index) => (
+						<ListGroup.Item key={index} onClick={() => setQuery(query)}>
+							{query}
+						</ListGroup.Item>
+					))}
+				</ListGroup>
+			</div>
 		</>
 	);
 };

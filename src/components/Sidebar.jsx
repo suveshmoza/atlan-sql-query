@@ -10,15 +10,21 @@ const Sidebar = ({ history, setQuery, setHistory }) => {
 	const [activeTab, setActiveTab] = useState(0);
 	const tabsRef = useRef(null);
 	const props = { setActiveTab, tabsRef };
+
 	return (
-		<div className="h-[300px] overflow-scroll">
+		<div className=" overflow-scroll">
 			<Tabs.Group
 				aria-label="Default tabs"
-				style={('underline', 'fullWidth')}
+				style={('pills', 'fullWidth')}
 				ref={props.tabsRef}
 				onActiveTabChange={(tab) => props.setActiveTab(tab)}
 			>
-				<Tabs.Item active title="Available Queries" icon={MdOutlineEditNote}>
+				<Tabs.Item
+					className="focus:ring-0"
+					active
+					title="Available Queries"
+					icon={MdOutlineEditNote}
+				>
 					<AvailableQuries setQuery={setQuery} />
 				</Tabs.Item>
 				<Tabs.Item title="Tables Available" icon={FaTable}>

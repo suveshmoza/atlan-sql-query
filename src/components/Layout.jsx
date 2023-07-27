@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { FaPlusCircle } from 'react-icons/fa';
 import Tab from './Tab';
 
 const Layout = ({ children }) => {
@@ -51,8 +52,8 @@ const Layout = ({ children }) => {
 	}, [activeTab, tabs]);
 
 	return (
-		<div className="bg-gray-100 pt-[1px] px-1">
-			<div className="flex items-center space-x-1">
+		<>
+			<ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 mt-[1px]">
 				{tabs.map((tab) => (
 					<Tab
 						key={tab.id}
@@ -62,13 +63,10 @@ const Layout = ({ children }) => {
 						onClose={() => handleRemoveTab(tab.id)}
 					/>
 				))}
-				<button
-					className="px-2 text-xl rounded bg-blue-500 text-white"
-					onClick={handleAddTab}
-				>
-					+
+				<button className="text-2xl text-blue-500 ml-1" onClick={handleAddTab}>
+					<FaPlusCircle />
 				</button>
-			</div>
+			</ul>
 			<div className="bg-white rounded-lg">
 				{tabs.map((tab) => (
 					<div
@@ -79,7 +77,7 @@ const Layout = ({ children }) => {
 					</div>
 				))}
 			</div>
-		</div>
+		</>
 	);
 };
 

@@ -1,6 +1,7 @@
 import { useState, useCallback, Suspense, lazy } from 'react';
 import Sidebar from '../components/Sidebar';
 import Loading from '../components/Loading';
+import { toast } from 'react-toastify';
 
 const LazyEditor = lazy(() => import('../components/Editor'));
 const LazyOutput = lazy(() => import('../components/Output'));
@@ -25,6 +26,7 @@ const Playground = () => {
 		}
 
 		setOutputData(data.default);
+		toast.success('Query Successfully!');
 		setIsLoading(false);
 		setShowOutput(true);
 		setHistory([query, ...history]);
