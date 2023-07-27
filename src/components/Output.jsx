@@ -1,9 +1,10 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { Table, Badge } from 'flowbite-react';
 import TableRow from './TableRow';
 import Loading from './Loading';
 
 const Output = memo(({ tableData, isLoading }) => {
+	const [compactView, setCompactView] = useState(true);
 	if (isLoading) {
 		return <Loading />;
 	}
@@ -20,11 +21,19 @@ const Output = memo(({ tableData, isLoading }) => {
 		<>
 			<div className="flex justify-between items-center text-xl p-2 bg-slate-100">
 				<h1>Output</h1>
-				<Badge color="indigo" className="text-sm px-2">
-					Fetched {tableData.length} rows
-				</Badge>
+				<div className="flex justify-center items-center">
+					<button
+						className="text-sm px-4 py-1 bg-blue-600 rounded text-white"
+						onClick={() => setCompactView((prev) => !prev)}
+					>
+						{compactView ? 'Full View' : 'Compact View'}
+					</button>
+					<Badge color="indigo" className="text-sm px-2">
+						Fetched {tableData.length} rows
+					</Badge>
+				</div>
 			</div>
-			<div className="h-[237px] overflow-scroll">
+			<div className={`${compactView ? 'h-96' : ''} overflow-scroll`}>
 				<Table striped className="table-auto w-full">
 					<Table.Head>
 						{Object.keys(tableData[0]).map((key) => (

@@ -45,19 +45,21 @@ const Editor = ({
 					id="file-input"
 					className="hidden"
 					type="file"
+					accept=".json"
 					onChange={(e) => handleFileImport(e, setOutputData, setShowOutput)}
 				/>
 
 				<button
 					type="button"
 					onClick={() => setQuery('')}
-					class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-600 border-gray-200 rounded cursor-pointer"
+					className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-600 border-gray-200 rounded cursor-pointer disabled:cursor-not-allowed disabled:bg-red-400"
+					disabled={query.length === 0}
 				>
 					Clear Query <FaEraser className="ml-2 h-4 w-4" />
 				</button>
 				<button
 					type="button"
-					class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-gray-200 rounded cursor-pointer"
+					class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-gray-200 rounded cursor-pointer disabled:cursor-not-allowed disabled:bg-blue-400"
 					disabled={query.length === 0}
 					onClick={handleSubmit}
 				>

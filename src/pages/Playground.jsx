@@ -15,18 +15,25 @@ const Playground = () => {
 
 	const handleSubmit = useCallback(async () => {
 		setIsLoading(true);
+		const toastId = 'unique_toast';
 		let data;
 
-		if (query.toLowerCase() === 'select * from products;') {
+		if (query.toLowerCase().includes('from products')) {
 			data = await import('../assets/data/products.json');
-		} else if (query.toLowerCase() === 'select * from customers;') {
+		} else if (query.toLowerCase().includes('from customers;')) {
 			data = await import('../assets/data/customer.json');
 		} else {
 			data = await import('../assets/data/products.json');
 		}
 
 		setOutputData(data.default);
-		toast.success('Query Successfully!');
+		const existingToast = toast.isActive(toastId);
+		toast.success(
+			existingToast ? 'Query Successfully!' : 'Query Successfully!',
+			{
+				toastId,
+			}
+		);
 		setIsLoading(false);
 		setShowOutput(true);
 		setHistory([query, ...history]);
@@ -34,10 +41,10 @@ const Playground = () => {
 			'history',
 			JSON.stringify({ items: [query, ...history] })
 		);
-	}, [query]);
+	}, [query, history]);
 
 	return (
-		<div className="flex flex-col max-h-full p-1 h-full">
+		<div className="flex flex-col">
 			<div className="flex flex-col-reverse sm:flex-row h-1/2">
 				<div className="w-full sm:w-2/3 mr-2 mb-2 sm:mb-0">
 					<Suspense fallback={<Loading />}>
@@ -58,7 +65,7 @@ const Playground = () => {
 					/>
 				</div>
 			</div>
-			<div className="flex-1">
+			<div className="h-96">
 				<Suspense fallback={<Loading />}>
 					{showOutput && (
 						<LazyOutput isLoading={isLoading} tableData={outputData} />

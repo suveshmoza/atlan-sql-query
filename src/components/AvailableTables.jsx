@@ -19,7 +19,11 @@ const AvailableTables = ({ setQuery }) => {
 				<Accordion.Panel key={table.name}>
 					<Accordion.Title>{table.name}</Accordion.Title>
 					<Accordion.Content className="p-2">
-						<AvailableTableItem data={table.data} setQuery={setQuery} />
+						<AvailableTableItem
+							name={table.name}
+							data={table.data}
+							setQuery={setQuery}
+						/>
 					</Accordion.Content>
 				</Accordion.Panel>
 			))}
